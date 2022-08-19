@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3000";
+const baseUrl = "https://iproject-p2-syahid.herokuapp.com";
 import { defineStore } from "pinia";
 import Swal from "sweetalert2";
 import axios from "axios";

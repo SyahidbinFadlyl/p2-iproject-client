@@ -70,7 +70,7 @@
         <div class="postUser">
           <div>
             <img
-              src="https://cdn-icons.flaticon.com/png/512/1144/premium/1144760.png?token=exp=1660761355~hmac=6520d0a8b7c90701fae3e1a573023927"
+              src="https://xsgames.co/randomusers/avatar.php?g=male"
               alt=""
               style="height: 40px; width: 40px; border-radius: 50%"
             />
