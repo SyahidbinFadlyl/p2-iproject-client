@@ -1,10 +1,11 @@
 <script>
   import { mapActions, mapState } from "pinia";
   import { useCounterStore } from "../stores/counter";
+  const access_token = localStorage.getItem("access_token");
   export default {
-    computed: {
-      ...mapState(useCounterStore, ["isLogin"]),
-    },
+    // computed: {
+    //   ...mapState(useCounterStore, ["isLogin"]),
+    // },
     methods: {
       ...mapActions(useCounterStore, ["handlesIsLogin", "handleLogout"]),
       handleLogoutBtn() {
@@ -12,16 +13,19 @@
       },
     },
     created() {
-      this.handlesIsLogin();
+      const access_token = localStorage.getItem("access_token");
     },
   };
 </script>
 
 <template>
   <div id="Navbar">
-    <h1>
-      <router-link class="logo" to="/">社交</router-link>
-    </h1>
+    <div>
+      <h1 style="margin-left: 1rem">
+        <router-link class="logo" to="/">社交</router-link>
+      </h1>
+    </div>
+
     <!-- <div v-if="isLogin" class="searchContainer">
       <input type="text" name="" id="search" placeholder="Search" />
       <button class="BTNsearch">
@@ -33,26 +37,22 @@
       </button>
     </div> -->
 
-    <div>
-      <router-link v-if="isLogin" class="buttonNav" to="/">
+    <div style="margin-right: 1rem">
+      <router-link class="buttonNav" to="/">
         <img
           class="imageLogout"
           src="https://cdn-icons-png.flaticon.com/512/565/565504.png"
           alt=""
         />
       </router-link>
-      <router-link v-if="isLogin" class="buttonNav" to="/profile">
+      <router-link class="buttonNav" to="/profile">
         <img
           class="imageLogout"
           src="https://cdn-icons-png.flaticon.com/512/64/64572.png"
           alt=""
         />
       </router-link>
-      <router-link
-        v-if="isLogin"
-        @click="handleLogoutBtn"
-        class="buttonNav"
-        to="/login"
+      <router-link @click="handleLogoutBtn" class="buttonNav" to="/login"
         ><img
           class="imageLogout"
           src="https://cdn-icons-png.flaticon.com/512/1828/1828479.png"
@@ -105,13 +105,16 @@
   #Navbar {
     display: flex;
     align-items: center;
-    flex-direction: row;
     justify-content: space-between;
     color: white;
     background-color: rgb(200, 0, 0);
     font-family: Arial, Helvetica, sans-serif;
-    padding: 18px 24px;
     box-shadow: 0 4px 2px -2px rgb(71, 71, 71);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
   #Navbar h1 {
     font-size: 30px;

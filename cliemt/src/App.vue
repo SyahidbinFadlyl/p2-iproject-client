@@ -12,5 +12,5 @@
 
 <template>
   <NavBar />
-  <RouterView />
+  <RouterView style="margin-top: 6rem" />
 </template>

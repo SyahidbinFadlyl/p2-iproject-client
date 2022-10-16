@@ -22,6 +22,10 @@
           imgUrl: this.imgUrl,
         });
       },
+      resetImageUploader() {
+        console.log("masuk");
+        this.imgUrl = null;
+      },
     },
   };
 </script>
@@ -38,9 +42,10 @@
     <input
       type="file"
       @change="previewFiles"
-      name="image"
-      id="image"
+      name="imgUrl"
+      id="imgUrl"
       required
+      @click="resetImageUploader"
     />
   </div>
   <button @click="onUpload">Post</button>

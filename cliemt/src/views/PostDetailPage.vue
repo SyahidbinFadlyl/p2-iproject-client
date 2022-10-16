@@ -6,8 +6,8 @@
   export default {
     data() {
       return {
-        comment: "",
         userId: localStorage.getItem("id"),
+        liked: false,
       };
     },
     components: {
@@ -26,20 +26,29 @@
       },
       likeThisPost() {
         this.likePost(this.$route.params.id);
+        this.readDataPostById(this.$route.params.id);
       },
       unlikeThisPost() {
-        console.log("masuk unlike");
         this.unlikePost(this.$route.params.id);
+        this.readDataPostById(this.$route.params.id);
       },
       deleteThisPost() {
-        console.log("masuk delete");
         this.deletePost(this.$route.params.id);
+      },
+      handleLikePost(payload) {
+        if (payload === "Unlike") {
+          this.unlikePost(this.$route.params.id);
+        } else {
+          this.likePost(this.$route.params.id);
+        }
       },
     },
     created() {
-      this.readDataPostById(this.$route.params.id);
-      this.comment = "";
+      this.readDataPostById(this.$route.params.id).then(() => {
+        this.liked = dataPostById.post.liked;
+      });
     },
+    mounted() {},
     computed: {
       ...mapState(useCounterStore, ["dataPostById"]),
     },
@@ -59,8 +68,19 @@
         >
           Delete
         </button>
-        <button @click="unlikeThisPost">Unlike</button>
-        <button @click="likeThisPost">Like</button>
+        <button
+          id="buttonLikePost"
+          @click="handleLikePost(dataPostById.post.liked)"
+        >
+          {{ dataPostById.post.liked }}
+        </button>
+        <!-- <button
+          id="buttonLikePost"
+          @click="likeThisPost"
+          v-if="!dataPostById.post.liked && !this.liked"
+        >
+          Like
+        </button> -->
       </div>
       <div class="postedBy">
         <div class="p1">di unggah oleh :</div>
@@ -70,7 +90,7 @@
         <div class="postUser">
           <div>
             <img
-              src="https://cdn-icons.flaticon.com/png/512/1144/premium/1144760.png?token=exp=1660761355~hmac=6520d0a8b7c90701fae3e1a573023927"
+              :src="dataPostById.post.User.photo"
               alt=""
               style="height: 40px; width: 40px; border-radius: 50%"
             />

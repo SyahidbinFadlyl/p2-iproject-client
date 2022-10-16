@@ -5,7 +5,6 @@ import axios from "axios";
 export const useCounterStore = defineStore({
   id: "counter",
   state: () => ({
-    isLogin: false,
     allPost: [],
     dataUserLogin: null,
     dataPostById: null,
@@ -31,7 +30,6 @@ export const useCounterStore = defineStore({
         localStorage.setItem("access_token", access_token);
         localStorage.setItem("user_email", email);
         localStorage.setItem("id", id);
-        this.isLogin = true;
         this.router.push("/");
       } catch (error) {
         console.log(error);
@@ -107,6 +105,7 @@ export const useCounterStore = defineStore({
             access_token: localStorage.getItem("access_token")
           },
         });
+        this.readDataPostById(id);
         Swal.fire({
           icon: "success",
           title: data.message,
@@ -176,6 +175,7 @@ export const useCounterStore = defineStore({
           },
         });
         console.log(data);
+        this.readDataPostById(id);
         Swal.fire({
           icon: "success",
           title: data.message,
@@ -239,8 +239,6 @@ export const useCounterStore = defineStore({
         localStorage.setItem("access_token", access_token);
         localStorage.setItem("email", data.email);
         localStorage.setItem("id", id);
-        // console.log("berhasil login");
-        this.isLogin = true;
         this.readProfilData();
 
         this.router.push("/");
@@ -257,13 +255,9 @@ export const useCounterStore = defineStore({
     },
     handleLogout() {
       localStorage.clear();
-      this.isLogin = false;
       this.dataUserLogin = null;
     },
     handlesIsLogin() {
-      if (localStorage.getItem("access_token")) {
-        this.isLogin = true;
-      }
     },
     async handleRegister(value) {
       try {

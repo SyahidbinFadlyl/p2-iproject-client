@@ -37,7 +37,7 @@
   <div v-if="dataUserLogin" class="container">
     <div class="profileHeader">
       <div class="profilIcon">
-        <img src="https://xsgames.co/randomusers/avatar.php?g=female" alt="" />
+        <img :src="dataUserLogin.user.photo" alt="" />
       </div>
       <div>
         <h1>{{ dataUserLogin.user.username }}</h1>
