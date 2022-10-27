@@ -42,12 +42,15 @@
           return `${like} Likes`;
         }
       },
+      scroll() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      },
     },
   };
 </script>
 
 <template>
-  <div v-if="post" class="instagram-card">
+  <div v-if="post" class="instagram-card" @click="scroll()">
     <div class="instagram-card-header">
       <p class="profilName">{{ post.User.username }}</p>
 
@@ -73,7 +76,7 @@
       </div>
     </div>
   </div>
-  <div v-if="like" class="instagram-card">
+  <div v-if="like" class="instagram-card" @click="scroll()">
     <div class="instagram-card-header">
       <p class="profilName">{{ like.Post.User.username }}</p>
       <div class="instagram-card-time">

@@ -8,6 +8,7 @@
       return {
         userId: localStorage.getItem("id"),
         liked: false,
+        comment: "",
       };
     },
     components: {
@@ -23,6 +24,7 @@
       ]),
       addComment() {
         this.addCommentToPost(this.$route.params.id, this.comment);
+        this.comment = "";
       },
       likeThisPost() {
         this.likePost(this.$route.params.id);

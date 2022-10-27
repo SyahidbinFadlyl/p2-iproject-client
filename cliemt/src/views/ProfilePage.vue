@@ -36,8 +36,14 @@
 <template>
   <div v-if="dataUserLogin" class="container">
     <div class="profileHeader">
-      <div class="profilIcon">
+      <!-- <div class="profilIcon">
         <img :src="dataUserLogin.user.photo" alt="" />
+      </div> -->
+      <div class="image-upload">
+        <label for="file-input">
+          <img style="cursor: pointer" :src="dataUserLogin.user.photo" alt="" />
+        </label>
+        <input id="file-input" type="file" />
       </div>
       <div>
         <h1>{{ dataUserLogin.user.username }}</h1>
@@ -131,5 +137,9 @@
     display: block;
     margin-top: 15px;
     margin-bottom: 4px;
+  }
+  .image-upload > input {
+    display: none;
+    cursor: pointer;
   }
 </style>

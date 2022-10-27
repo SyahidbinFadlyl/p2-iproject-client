@@ -3,6 +3,9 @@
   import { useCounterStore } from "../stores/counter";
   const access_token = localStorage.getItem("access_token");
   export default {
+    data() {
+      const access_token = null;
+    },
     // computed: {
     //   ...mapState(useCounterStore, ["isLogin"]),
     // },
@@ -11,9 +14,16 @@
       handleLogoutBtn() {
         this.handleLogout();
       },
+      scroll() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      },
+      scroll2() {
+        window.scrollTo({ top: 0 });
+      },
     },
-    created() {
-      const access_token = localStorage.getItem("access_token");
+    created() {},
+    mounted() {
+      this.access_token = localStorage.getItem("access_token");
     },
   };
 </script>
@@ -38,14 +48,14 @@
     </div> -->
 
     <div style="margin-right: 1rem">
-      <router-link class="buttonNav" to="/">
+      <router-link class="buttonNav" to="/" @click="scroll">
         <img
           class="imageLogout"
           src="https://cdn-icons-png.flaticon.com/512/565/565504.png"
           alt=""
         />
       </router-link>
-      <router-link class="buttonNav" to="/profile">
+      <router-link class="buttonNav" to="/profile" @click="scroll2">
         <img
           class="imageLogout"
           src="https://cdn-icons-png.flaticon.com/512/64/64572.png"
@@ -57,6 +67,7 @@
           class="imageLogout"
           src="https://cdn-icons-png.flaticon.com/512/1828/1828479.png"
           alt=""
+          @click="scroll2"
       /></router-link>
     </div>
   </div>

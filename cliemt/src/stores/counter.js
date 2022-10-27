@@ -308,8 +308,7 @@ export const useCounterStore = defineStore({
             access_token: localStorage.getItem("access_token")
           }
         });
-        this.allPost = response.data;
-        console.log(this.allPost);
+        this.allPost = response.data.post;
       } catch (error) {
         console.log(error);
       }
